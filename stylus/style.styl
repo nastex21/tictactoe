@@ -1,0 +1,152 @@
+centerer()
+  position absolute
+  top 50%
+  left 50%
+
+body
+  font-family "Oswald", Helvetica, Arial, sans-serif
+  font-weight 300
+  text-transform uppercase
+  padding 0
+  margin 0
+
+.main, h1 
+  flex-direction column
+  justify-content center
+  align-items center
+  display -webkit-box
+  display -moz-box
+  display box
+  display -webkit-flex
+  display -moz-flex
+  display -ms-flexbox
+  display flex
+
+#choose
+  font-weight 600
+  font-size 1em
+
+html, body, .main
+  height 100%
+
+#tictac
+  centerer()
+  transform translate(-50%, -50%)
+  display grid
+  grid-template-columns repeat(3, 1fr)
+  grid-gap 0.3em
+  grid-auto-columns minmax(30px, auto)
+  grid-auto-rows minmax(30px, auto)
+  background-color #fff
+  width 35%
+  height 50%
+  max-height 200px
+  max-width 600px
+  min-width 350px
+  min-height 250px
+  color white
+
+#tictac > div 
+  background black
+
+.squares > span
+  text-align center
+  display block
+  position relative
+  top 50%
+  transform translateY(-50%)
+
+.button-row, #clear
+  display -webkit-inline-box
+  display -moz-inline-box
+  display inline-box
+  display -webkit-inline-flex
+  display -moz-inline-flex
+  display -ms-inline-flexbox
+  display inline-flex
+
+#clear 
+  position absolute
+  centerer()
+  transform translate(-50%, 300%)
+
+.button-row > div, #clear > div
+  position relative
+  width 160px
+  height 50px
+  margin 0 15px
+  -webkit-perspective 1000px
+  -moz-perspective 1000px
+  perspective 1000px
+
+.button-row > div > a, #clear > div > a
+  margin 0
+  padding 0
+  width 100%
+  height 100%
+  position absolute
+  -webkit-transform-style preserve-3d
+  -moz-transform-style preserve-3d
+  -ms-transform-style preserve-3d
+  -o-transform-style preserve-3d
+  transform-style preserve-3d
+  -webkit-transform translateZ(-25px)
+  -moz-transform translateZ(-25px)
+  -ms-transform translateZ(-25px)
+  -o-transform translateZ(-25px)
+  transform translateZ(-25px)
+  -webkit-transition -webkit-transform 0.25s
+  -moz-transition -moz-transform 0.25s
+  transition transform 0.25s
+
+.button-row > div > a::before, .button-row > div > a::after, #clear > div > a::before, #clear > div > a::after  
+  justify-content center
+  align-items center
+  margin 0
+  width 160px
+  height 50px
+  position absolute
+  border 5px solid black
+  box-sizing border-box
+  content attr(title)
+  display -webkit-box
+  display -moz-box
+  display box
+  display -webkit-flex
+  display -moz-flex
+  display -ms-flexbox
+  display flex
+
+.button-row > div > a::before, #clear > div > a::before
+  background-color #000
+  color #fff
+  -webkit-transform rotateY(0deg) translateZ(25px)
+  -moz-transform rotateY(0deg) translateZ(25px)
+  -ms-transform rotateY(0deg) translateZ(25px)
+  -o-transform rotateY(0deg) translateZ(25px)
+  transform rotateY(0deg) translateZ(25px)
+
+.button-row > div > a::after, #clear > div > a::after
+  background-color #fff
+  border-color #000
+  color #000
+  -webkit-transform rotateX(90deg) translateZ(25px)
+  -moz-transform rotateX(90deg) translateZ(25px)
+  -ms-transform rotateX(90deg) translateZ(25px)
+  -o-transform rotateX(90deg) translateZ(25px)
+  transform rotateX(90deg) translateZ(25px)
+
+.button-row > div > a:hover, #clear > div > a:hover 
+  -webkit-transform translateZ(-25px) rotateX(-90deg)
+  -moz-transform translateZ(-25px) rotateX(-90deg)
+  -ms-transform translateZ(-25px) rotateX(-90deg)
+  -o-transform translateZ(-25px) rotateX(-90deg)
+  transform translateZ(-25px) rotateX(-90deg)
+
+#msg 
+  centerer()
+  transform translate(-50%, -50%)
+  width 100%
+  font-size 3em
+  font-weight 800
+  text-align center
