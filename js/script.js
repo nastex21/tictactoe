@@ -33,12 +33,10 @@ $(document).ready(function () {
 
     //computer's AI
     comp = function () {
-      console.log("comp func is running")
       player = "computer";
 
       //check to see if there's a winner
       var checkWinner = function () {
-        console.log("checkWinner func is running")
         if (arr.length >= 5 && arr.length < 9) {
           winner();
         } else if (arr.length == 9) {
@@ -51,7 +49,6 @@ $(document).ready(function () {
 
       //if answer isn't in arr (array used to keep track of numbers used), then push it to arr else if it is found, randomize the number
       var continueRun = function () {
-        console.log("continueRun func is running")
         if (jQuery.inArray(answer, arr) == -1) {
           arr.push(answer);
           compsArr.push(answer);
@@ -73,7 +70,6 @@ $(document).ready(function () {
 
       //gets a number between 1 - 9 then runs it through ContinueRun function to see if it meets a criteria.
       function randomizer() {
-        console.log("randomizer func is running")
         getRandomIntInclusive(1, 9); //answer is used as number for computer
         continueRun();
       }
@@ -81,7 +77,6 @@ $(document).ready(function () {
       var endPlayer = 0; //at end of array;
 
       var playerFunc = function () {
-        console.log("playerFunc is running")
         for (var i = 0; i < winArr.length; i++) {
           //possible winning combinations for PLAYER
           var trackPlayer = [];
@@ -89,18 +84,13 @@ $(document).ready(function () {
             if (winArr[i].includes(playersArr[j])) {
               trackPlayer.push(playersArr[j]);
             }
-            console.log("trackPlayer: " + trackPlayer)
-            console.log("trackPlayer.length: " + trackPlayer.length);
             if (trackPlayer.length == 2) {
               var numAnsw = winArr[i].filter(x => !trackPlayer.includes(x));
               answer = numAnsw[0];
-              console.log("answer from playerFunc: " + answer);
-              console.log("continueRun from playerFunc");
               return continueRun();
             }
 
             if (i == winArr.length - 1 && j == playersArr.length - 1) {
-              console.log("Last possible combination, last move in playersArr, so run continueRun");
               return continueRun();
             }
           }
@@ -116,29 +106,21 @@ $(document).ready(function () {
             if (winArr[i].includes(compsArr[j])) {
               trackComp.push(compsArr[j]);
             }
-            console.log("trackComp: " + trackComp)
-            console.log("trackComp.length: " + trackComp.length);
             //if computer has made two moves that satisfy winning combinations
             if (trackComp.length == 2) {
               //get winning move from combination list
               var numAnsw = winArr[i].filter(x => !trackComp.includes(x));
               numAnsw = numAnsw[0];
-              console.log("arr: " + arr);
               //if numAnsw is not in the arr moves list
               if (!arr.includes(numAnsw)) {
-                console.log("line: 132: " + numAnsw);
                 answer = numAnsw;
-                console.log("continueRun from computerFunc")
                 return continueRun();
-                console.log("answer: " + answer);
               } else {
                 //number is in array, check playerFunc first before selecting new number 
-                console.log("if trackComp == 2 and answer is in array moves list")
                 return playerFunc();
               }
             }
             if (i == winArr.length - 1 && j == compsArr.length - 1 && !arr.includes(numAnsw)) {
-              console.log("Last possible combination, last move in compsArr");
               return playerFunc();
             }
           }
@@ -146,7 +128,6 @@ $(document).ready(function () {
       }
 
       //if less than or equal to three moves, run the randomizer
-
       if (arr.length < 3) {
         randomizer();
       } else {
@@ -160,8 +141,6 @@ $(document).ready(function () {
       comp();
     }
   };
-
-
 
   //click function for X or O selection
   $("a").click(function () {
@@ -283,30 +262,3 @@ $(document).ready(function () {
     window.location.href = window.location.href;
   });
 });
-
- /*     console.log("playerFunc is running");
-            for (var i = 0; i < winArr.length; i++) {
-              var counter = 0;
-              var keepTrackPlayer = [];
-              for (var j = 0; j < playersArr.length; j++) {
-                if (winArr[i].includes(playersArr[j])) {
-                  keepTrackPlayer.push(playersArr[j]);
-                }
-    
-                if (keepTrackPlayer.length == 2) {
-                  let intersection = winArr[i].filter(x => !keepTrackPlayer.includes(x));
-    
-                  //see if the intersection number is in the arr array (array to keep track of all numbers use)
-                  if (arr.includes(intersection) == -1) {
-                    answer = intersection;
-                    return continueRun()
-                  }
-                } else if (j == playersArr.length - 1 && counter !== 2) {
-                  endPlayer++;
-                  if (endPlayer == 8) {
-                  } else {
-                    randomizer();
-                  }
-                }
-              }
-            } */
