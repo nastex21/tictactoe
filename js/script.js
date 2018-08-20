@@ -220,7 +220,7 @@ $(document).ready(function () {
   };
 
   //player's input
-  $(document.body).on("click", ".squares", function () {
+  $(document.body).on("click touchstart", ".squares", function () {
     player = "user";
     var val = Number(this.getAttribute("data-value"));
     var getText = $(this).text();
@@ -258,7 +258,7 @@ $(document).ready(function () {
     }
   });
 
-  $(document.body).on("click", "#reset", function () {
+  $(document.body).on("click touchstart", "#reset", function () {
     window.location.href = window.location.href;
   });
 });
