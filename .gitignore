@@ -2,3 +2,4 @@
 *.json
 
 bower_components
+index.js
